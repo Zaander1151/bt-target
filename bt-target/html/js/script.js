@@ -25,6 +25,7 @@ window.addEventListener('message', function(event) {
             $("#target-"+index+"").css("padding-top", "7px");
 
             $("#target-"+index).data('TargetData', item.event);
+            $("#target-"+index).data('TargetArgs', item.args);  //Added by Zaander Allows for passing args (Only tested args as array)
         });
 
         $(".target-eye").css("color", "rgb(30,144,255)");
@@ -43,7 +44,8 @@ $(document).on('mousedown', (event) => {
 
         $.post('http://bt-target/selectTarget', JSON.stringify({
             event: TargetData,
-        }));
+            args: TargetArgs,
+        })); //Modified by Zaander - Added args
 
         $(".target-label").html("");
         $('.target-wrapper').hide();
