@@ -126,15 +126,18 @@ function playerTargetDisable()
 end
 
 --NUI CALL BACKS
-
+--Modified to accept data.args
 RegisterNUICallback('selectTarget', function(data, cb)
     SetNuiFocus(false, false)
 
     success = false
 
     targetActive = false
-
-    TriggerEvent(data.event)
+    if data.args ~= nil then
+        TriggerEvent(data.event, data.args)
+    else
+        TriggerEvent(data.event)
+    end
 end)
 
 RegisterNUICallback('closeTarget', function(data, cb)
